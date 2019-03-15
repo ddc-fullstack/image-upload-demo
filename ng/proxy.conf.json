@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://bootcamp-coders.cnm.edu/~username/project/public_html/",
+    "secure": "true",
+    "changeOrigin": "true"
+  }
+}
