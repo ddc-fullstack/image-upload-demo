@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "072d0ffc3094b77f76e1ec6d1d6d7caf",
+    "content-hash": "875cc8b53022447219b6136f9b49689d",
     "packages": [
         {
             "name": "cilex/cilex",
@@ -123,6 +123,58 @@
                 "silex"
             ],
             "time": "2012-12-19T10:50:58+00:00"
+        },
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "442cba07f093cdc060038628daa67f013e3dc792"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/442cba07f093cdc060038628daa67f013e3dc792",
+                "reference": "442cba07f093cdc060038628daa67f013e3dc792",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "time": "2018-12-16T15:58:27+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1466,96 +1518,6 @@
             "time": "2016-02-02T13:00:08+00:00"
         },
         {
-            "name": "phpdocumentor/phpdocumentor",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/phpDocumentor2.git",
-                "reference": "394d2e383448b046fc6c38e4c1d275bea40ae9cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/394d2e383448b046fc6c38e4c1d275bea40ae9cc",
-                "reference": "394d2e383448b046fc6c38e4c1d275bea40ae9cc",
-                "shasum": ""
-            },
-            "require": {
-                "cilex/cilex": "~1.0",
-                "erusev/parsedown": "~1.0",
-                "jms/serializer": ">=0.12 < 1.8.0",
-                "monolog/monolog": "~1.6",
-                "padraic/phar-updater": "^1.0",
-                "php": ">=5.3.3",
-                "phpdocumentor/fileset": "~1.0",
-                "phpdocumentor/graphviz": "~1.0",
-                "phpdocumentor/reflection": "^3.0",
-                "phpdocumentor/reflection-docblock": "~2.0",
-                "symfony/config": "~2.3",
-                "symfony/console": "~2.3",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/process": "~2.0",
-                "symfony/stopwatch": "~2.3",
-                "symfony/validator": "~2.2",
-                "twig/twig": "~1.3",
-                "webmozart/assert": "^1.2",
-                "zendframework/zend-cache": "~2.1",
-                "zendframework/zend-config": "~2.1",
-                "zendframework/zend-filter": "~2.1",
-                "zendframework/zend-i18n": "~2.1",
-                "zendframework/zend-serializer": "~2.1",
-                "zendframework/zend-servicemanager": "~2.1",
-                "zendframework/zend-stdlib": "~2.1",
-                "zetacomponents/document": ">=1.3.1"
-            },
-            "require-dev": {
-                "behat/behat": "^3.0",
-                "mikey179/vfsstream": "^1.2",
-                "mockery/mockery": "^0.9@dev",
-                "phpunit/phpunit": "^4.0",
-                "squizlabs/php_codesniffer": "^1.4",
-                "symfony/expression-language": "^2.4"
-            },
-            "suggest": {
-                "ext-twig": "Enabling the twig extension improves the generation of twig based templates.",
-                "ext-xslcache": "Enabling the XSLCache extension improves the generation of xml based templates."
-            },
-            "bin": [
-                "bin/phpdoc.php",
-                "bin/phpdoc"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "2.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "phpDocumentor": [
-                        "src/",
-                        "tests/unit/"
-                    ],
-                    "Cilex\\Provider": [
-                        "src/"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Documentation Generator for PHP",
-            "homepage": "http://www.phpdoc.org",
-            "keywords": [
-                "api",
-                "application",
-                "dga",
-                "documentation",
-                "phpdoc"
-            ],
-            "time": "2017-12-24T17:56:55+00:00"
-        },
-        {
             "name": "phpdocumentor/reflection",
             "version": "3.0.1",
             "source": {
@@ -1821,6 +1783,7 @@
                 "testing",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-02-07T06:47:59+00:00"
         },
         {
@@ -2206,6 +2169,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-04-11T04:50:36+00:00"
         },
         {
@@ -4640,12 +4604,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "guzzlehttp/guzzle": 0,
         "phpunit/dbunit": 0,
         "phpunit/phpunit": 0,
-        "swiftmailer/swiftmailer": 0,
-        "ramsey/uuid": 0,
-        "phpdocumentor/phpdocumentor": 20
+        "ramsey/uuid": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,

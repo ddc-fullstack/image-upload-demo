@@ -25,6 +25,8 @@ try {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
 }
+
+header("Content-type: application/json");
 // encode and return reply to front end caller
 echo json_encode($reply);
 

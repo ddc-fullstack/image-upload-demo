@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://bootcamp-coders.cnm.edu/~username/project/public_html/",
+    "target": "https://bootcamp-coders.cnm.edu/~gkephart/image-upload-demo/public_html/",
     "secure": "true",
     "changeOrigin": "true"
   }
