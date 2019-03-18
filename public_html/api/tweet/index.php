@@ -40,7 +40,7 @@ try {
 
 	$profile = Profile::getProfileByProfileEmail($pdo, "userman.jane@jones.com");
 
-	$tweetProfileId = filter_input(INPUT_GET, "tweetProfileId", FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES);
+	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES);
 
 	//make sure the id is valid for methods that require it
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true )) {

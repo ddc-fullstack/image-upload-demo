@@ -8,6 +8,7 @@ import {DeepDiveInterceptor} from "./shared/interceptors/deep-dive.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {CreateTweetModalComponent} from "./splash/create-tweet-modal/create-tweet-modal.component";
 import {NgbActiveModal, } from "@ng-bootstrap/ng-bootstrap";
+import {TweetImageService} from "./splash/tweet-image.service";
 
 
 
@@ -20,7 +21,7 @@ export const routes: Routes = [
 export const allAppComponents = [AppComponent, SplashComponent, CreateTweetModalComponent];
 export const entryComponents = [CreateTweetModalComponent];
 export const appRoutingProviders: any[] = [
-	SessionService,  SignUpService, TweetService, NgbActiveModal,
+	SessionService,  SignUpService, TweetService, NgbActiveModal, TweetImageService,
 	{provide: HTTP_INTERCEPTORS, useClass: DeepDiveInterceptor, multi: true},
 
 ];

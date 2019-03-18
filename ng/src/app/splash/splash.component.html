@@ -1,6 +1,44 @@
-<h4>hello world</h4>
+
 
 <div class="container">
-	<h2>Create Tweets With a Modal</h2>
-	<button class="btn btn-lg btn-primary" (click)="openModal()">The little Birds Go Chirp Chirp</button>
+	<h4>Deep Dive Classic Memes</h4>
+	<div class="row">
+		<div class="sm-col-6 col-4">
+			<div class="card bg-info">
+				<div class="card-body">
+					<h5 class="card-title">@Gkephart</h5>
+					<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+					<p class="card-text">{{tweet.tweetContent}}</p>
+					<form>
+						<div class="inline">
+							<input
+								type="file"
+								accept="image/*"
+								name="image"
+								id="image"
+								ng2FileSelect
+								[uploader]="uploader"
+								aria-describedby="petHelp"
+							/>
+						</div>
+						<div class="my-1">
+							<button type="button" class="btn btn-success btn-s"
+									  (click)="uploadImage()" [disabled]="!uploader.getNotUploadedItems().length">
+								<span class="glyphicon glyphicon-upload"></span> Upload
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="card-columns">
+				<div class="card card-images d-inline" *ngFor="let image of images">
+
+					<img [src]="image.imageUrl" class="card-img" width="200px" height="200px" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+

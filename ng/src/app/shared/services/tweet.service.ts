@@ -23,4 +23,8 @@ export class TweetService {
 	getAllTweets() : Observable<Tweet[]> {
 		return(this.http.get<Tweet[]>(this.tweetUrl));
 	}
+
+	getTweetById(tweetId : string) : Observable<Tweet>  {
+		return(this.http.get<Tweet>(this.tweetUrl + tweetId))
+	}
 }

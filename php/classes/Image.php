@@ -265,60 +265,12 @@ class Image implements \JsonSerializable {
 		}
 		return ($image);
 	}
-
-	/**
-	 * gets the Image by Tweet id
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string $imageTweetId image tweet id to search by
-	 * @return \SplFixedArray SplFixedArray of Images found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getImageByImageTweetId(\PDO $pdo, string $imageTweetId): \SPLFixedArray {
-
-		try {
-			$imageTweetId = self::validateUuid($imageTweetId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
+	public static function getAllImages(\PDO $pdo): \SPLFixedArray {
 
 		// create query template
-		$query = "SELECT imageId, imageTweetId, imageCloudinaryToken, imageUrl FROM image WHERE imageTweetId = :imageTweetId";
+		$query = "SELECT imageId, imageTweetId, imageCloudinaryToken, imageUrl FROM image";
 		$statement = $pdo->prepare($query);
-		// bind the image tweet id to the place holder in the template
-		$parameters = ["imageTweetId" => $imageTweetId->getBytes()];
-		$statement->execute($parameters);
-		// build an array of images
-		$images = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$image = new Image($row["imageId"], $row["imageTweetId"], $row["imageCloudinaryToken"], $row["imageUrl"]);
-				$images[$images->key()] = $image;
-				$images->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($images);
-	}
-
-	public static function getImageByProfileId(\PDO $pdo, string $profileId): \SPLFixedArray {
-
-		try {
-			$profileId = self::validateUuid($profileId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		// create query template
-		$query = "SELECT image.imageId, image.imageTweetId, image.imageCloudinaryToken, image.imageUrl FROM image INNER JOIN tweet ON tweet.tweetId = image.imageTweetId WHERE tweet.tweetProfileId = :profileId";
-		$statement = $pdo->prepare($query);
-		// bind the image tweet id to the place holder in the template
-		$parameters = ["profileId" => $profileId->getBytes()];
-		$statement->execute($parameters);
+		$statement->execute();
 		// build an array of images
 		$images = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
@@ -343,13 +295,7 @@ class Image implements \JsonSerializable {
 	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
-
-		$fields["imageId"] = $this->imageId;
-		$fields["imageTweetId"] = $this->imageTweetId;
-		$fields["imageCloudinaryToken"] = $this->imageCloudinaryToken;
-		$fields["imageUrl"] = $this->imageUrl;
-
-
+		unset($fields["imageCloudinaryToken"]);
 		return ($fields);
 	}
 }
