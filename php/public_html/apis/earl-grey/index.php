@@ -6,6 +6,8 @@ $reply = new stdClass();
 $reply->status = 200;
 $reply->data = null;
 
+use UssHopper\ImageUpload\Profile;
+
 try {
 	//verify the HTTP method being used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];

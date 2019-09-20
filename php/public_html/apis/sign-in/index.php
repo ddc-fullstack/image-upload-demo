@@ -4,7 +4,7 @@ require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
 require_once("/etc/apache2/capstone-mysql/Secrets.php");
 
-use Edu\Cnm\DataDesign\Profile;
+use UssHopper\ImageUpload\Profile;
 
 /**
  * api for handling sign-in
