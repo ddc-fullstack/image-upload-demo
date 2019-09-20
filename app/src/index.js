@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import {FourOhFour} from "./pages/FourOhFour";
 import {Home} from "./pages/Home";
-import { library } from '@fortawesome/fontawesome-svg-core'
+import {library} from '@fortawesome/fontawesome-svg-core'
 import {Profile} from "./pages/Profile";
 import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/reducers";
@@ -19,19 +19,24 @@ const store = createStore(combinedReducers, applyMiddleware(thunk));
 
 library.add();
 
-const Routing = (store) => (
-	<>
-		<Provider store={store}>
-			<BrowserRouter>
-				<Switch>
-					<Route exact path="/profile/" component={Profile}/>
-					<Route exact path="/" component={Home}/>
-					<Route component={FourOhFour}/>
-				</Switch>
-			</BrowserRouter>
-		</Provider>
-	</>
-);
+const Routing = (store) => {
 
-ReactDOM.render(Routing(store) , document.querySelector("#root"));
+
+
+	return (
+		<>
+			<Provider store={store}>
+				<BrowserRouter>
+					<Switch>
+						<Route exact path="/profile/" component={Profile}/>
+						<Route exact path="/" component={Home}/>
+						<Route component={FourOhFour}/>
+					</Switch>
+				</BrowserRouter>
+			</Provider>
+		</>
+	)
+};
+
+ReactDOM.render(Routing(store), document.querySelector("#root"));
 

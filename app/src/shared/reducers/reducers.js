@@ -1,6 +1,8 @@
 import {combineReducers} from "redux"
-import {ProfileReducer} from "./tweetReducer";
+import {profileReducer} from "./profileReducer";
+
+
 
 export const combinedReducers = combineReducers({
-	Profiles: profileReducer,
+	Profiles: profileReducer
 });
