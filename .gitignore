@@ -1,10 +1,10 @@
 .DS_Store
 /.sync-config.cson
 /.idea
-/node_modules
 /vendor
-/src/**/*.js
-/src/**/*.js.map
-/public_html/dist
-/public_html/index.html
+/node_modules
+/app/node_modules
+/php/vendor
+/app/src/setupProxy.js
+/vendor
 /npm-debug.log
