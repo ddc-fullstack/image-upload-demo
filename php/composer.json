@@ -5,7 +5,8 @@
 		"phpunit/phpunit": "@stable",
 		"lcobucci/jwt": "3.2",
 		"ramsey/uuid": "@stable",
-		"cloudinary/cloudinary_php": "^1.13"
+		"cloudinary/cloudinary_php": "^1.13",
+		"swiftmailer/swiftmailer": "@stable"
 	},
 
 	"scripts":{
