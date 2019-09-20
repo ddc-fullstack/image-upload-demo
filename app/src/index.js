@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
@@ -11,6 +11,7 @@ import {applyMiddleware, createStore} from "redux";
 import {combinedReducers} from "./shared/reducers/reducers";
 import thunk from "redux-thunk";
 import Provider from "react-redux/lib/components/Provider";
+import {httpConfig} from "./shared/utils/http-config";
 
 library.add();
 
@@ -21,7 +22,7 @@ library.add();
 
 const Routing = (store) => {
 
-
+	httpConfig.get("/apis/earl-grey/");
 
 	return (
 		<>
