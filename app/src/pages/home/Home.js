@@ -7,7 +7,7 @@ export const Home = () => {
 		<>
 			<Container>
 				<br/>
-				<SignUpForm className=""/>
+				<SignUpForm />
 			</Container>
 		</>
 	)

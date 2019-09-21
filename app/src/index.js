@@ -12,6 +12,7 @@ import {combinedReducers} from "./shared/reducers/reducers";
 import thunk from "redux-thunk";
 import Provider from "react-redux/lib/components/Provider";
 import {httpConfig} from "./shared/utils/http-config";
+import {MainNav} from "./shared/components/MainNav";
 
 library.add();
 
@@ -27,10 +28,11 @@ const Routing = (store) => {
 		<>
 			<Provider store={store}>
 				<BrowserRouter>
+					<MainNav />
 					<Switch>
-						<Route exact path="/profile/" component={Profile}/>
-						<Route exact path="/" component={Home}/>
-						<Route component={FourOhFour}/>
+						<Route exact path="/profile" component={Profile} />
+						<Route exact path="/" component={Home} />
+						<Route component={FourOhFour} />
 					</Switch>
 				</BrowserRouter>
 			</Provider>
