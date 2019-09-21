@@ -13,12 +13,13 @@ import thunk from "redux-thunk";
 import Provider from "react-redux/lib/components/Provider";
 import {httpConfig} from "./shared/utils/http-config";
 import {MainNav} from "./shared/components/MainNav";
-
-library.add();
+import {faDove, faEnvelope, faKey, faPhone, faStroopwafel} from "@fortawesome/free-solid-svg-icons";
 
 const store = createStore(combinedReducers, applyMiddleware(thunk));
 
-library.add();
+library.add(faStroopwafel, faEnvelope, faKey, faDove, faPhone);
+
+
 
 const Routing = (store) => {
 
