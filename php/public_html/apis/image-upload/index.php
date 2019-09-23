@@ -44,12 +44,7 @@ try {
 
 
 	// process GET requests
-	if($method === "GET") {
-		// set XSRF token
-		setXsrfCookie();
-		// TODO fix get imageByImageTweetId
-		$reply->data = Image::getAllImages($pdo)->toArray();
-	}  elseif($method === "POST") {
+	if($method === "POST") {
 
 		//enforce that the end user has a XSRF token.
 		verifyXsrf();
@@ -57,18 +52,17 @@ try {
 		//use $_POST super global to grab the needed Id
 		$tweetId = filter_input(INPUT_POST, "tweetId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
-		// assigning variable to the user profile, add image extension
+		// assigning variable to the user profile, add image
+		//
+
 		$tempUserFileName = $_FILES["image"]["tmp_name"];
 
-		// upload image to cloudinary and get public id
-		$cloudinaryResult = \Cloudinary\Uploader::upload($tempUserFileName, array("width" => 200, "crop" => "scale"));
+		$cloudinary = \Cloudinary\Uploader::upload($tempUserFileName, array("width" => 200, "crop" => "scale"));
 
-		// after sending the image to Cloudinary, create a new image
-		$image = new Image(generateUuidV4(), $tweetId, $cloudinaryResult["signature"], $cloudinaryResult["secure_url"]);
-		$image->insert($pdo);
-		var_dump($image);
-		// update reply
-		$reply->message = "Image uploaded Ok";
+		$reply->message  = $cloudinary["secure_url"];
+
+
+
 	}
 
 } catch(Exception $exception) {

@@ -5,13 +5,15 @@ export function ImageDropZone({formikProps}) {
 
 	const onDrop = useCallback(acceptedFiles => {
 
-		const fileReader = new FileReader();
-		fileReader.readAsText(acceptedFiles[0]);
+		const formData = new FormData();
+		formData.append('image',acceptedFiles[0]);
 
-		formikProps.setFieldValue("profileAvatar", acceptedFiles[0])
+
+		formikProps.setFieldValue("profileAvatar", formData )
 
 	}, []);
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+
 
 	return (
 		<div className="form-group" {...getRootProps()}>
