@@ -13,9 +13,8 @@ export const SignUpForm = () => {
 		profilePassword: "",
 		profilePasswordConfirm: "",
 		profilePhone: "",
-		profileAvatar: "",
+		profileAvatar:null
 	};
-
 
 	const validator = Yup.object().shape({
 		profileEmail: Yup.string()
@@ -31,10 +30,13 @@ export const SignUpForm = () => {
 			.min(8, "Password must be at least eight characters"),
 		profilePhone: Yup.string()
 			.min(10, "phone number is to short")
-			.max(10, "phone Number is to long")
+			.max(10, "phone Number is to long"),
+		profileAvatar: Yup.mixed()
+			.required("A profile Avatar is required")
 	});
 
 	const submitSignUp = (values, {resetForm, setStatus}) => {
+		console.log(values);
 		httpConfig.post("/apis/sign-up/", values)
 			.then(reply => {
 					let {message, type} = reply;

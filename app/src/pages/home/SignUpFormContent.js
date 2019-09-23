@@ -2,10 +2,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import React from "react";
 import {FormDebugger} from "../../shared/components/FormDebugger";
+import {useDropzone} from "react-dropzone";
+import {ImageDropZone} from "../../shared/components/ImageDropZone";
 
 export const SignUpFormContent = (props) => {
 	const {
-		submitStatus,
+		setFieldValue,
 		status,
 		values,
 		errors,
@@ -17,6 +19,7 @@ export const SignUpFormContent = (props) => {
 		handleSubmit,
 		handleReset
 	} = props;
+
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
@@ -142,8 +145,10 @@ export const SignUpFormContent = (props) => {
 							placeholder="Enter email"
 							onChange={handleChange}
 							onBlur={handleBlur}
+
 						/>
 					</div>
+
 					{
 						errors.profilePhone && touched.profilePhone && (
 							<div className="alert alert-danger">
@@ -153,6 +158,13 @@ export const SignUpFormContent = (props) => {
 
 					}
 				</div>
+				<ImageDropZone
+					formikProps={{
+						handleChange,
+						handleBlur,
+						setFieldValue
+					}}
+				/>
 				<div className="form-group">
 					<button className="btn btn-primary mb-2" type="submit">Submit</button>
 					<button
