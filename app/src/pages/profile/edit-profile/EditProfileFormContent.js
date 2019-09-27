@@ -122,15 +122,14 @@ export const EditProfileFormContent = (props) => {
 				</div>
 				<ImageDropZone
 					formikProps={{
+						values,
 						handleChange,
 						handleBlur,
 						setFieldValue,
 						fieldValue:"profileAvatarUrl"
-
 					}}
 				/>
-
-
+				{status && (<div className={status.type}>{status.message}</div>)}
 				<FormDebugger {...props} />
 			</form>
 

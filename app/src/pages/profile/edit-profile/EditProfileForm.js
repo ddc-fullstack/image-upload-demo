@@ -6,12 +6,7 @@ import {EditProfileFormContent} from "./EditProfileFormContent";
 
 export const EditProfileForm = ({profile}) => {
 
-	const initialValues = {
-		profileEmail: "",
-		profileAtHandle: "",
-		profilePhone: "",
-		profileAvatarUrl: null
-	};
+	const initialValues = profile;
 
 	const validationObject = Yup.object().shape({
 		profileEmail: Yup.string()
@@ -23,38 +18,35 @@ export const EditProfileForm = ({profile}) => {
 		profileAtHandle: Yup.string
 	});
 
+	function submitEditedProfile(values, {resetForm, setStatus}) {
 
-	async function submitEditedProfile(values, {resetForm, setStatus}) {
+		const submitUpdatedProfile = (updatedProfile) => {
+			httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile)
+				.then(reply => {
+					let {message, type} = reply;
 
-		const updateProfileObject = (cloudinaryUrl, profile, values) => {
-			const newProfile = Object.assign({}, {...values}, {...profile});
-			if(cloudinaryUrl) {
-				newProfile.profileAvatarUrl = cloudinaryUrl;
-			}
-			return newProfile;
+					if(reply.status === 200) {
+						resetForm();
+					}
+					setStatus({message, type});
+					return (reply)
+				})
 		};
 
-		try {
-			if(values.profileAvatarUrl) {
-				const imageResponse = await httpConfig.post("/apis/image-upload/", values.profileAvatarUrl);
+		if(values.profileAvatarUrl) {
+			httpConfig.post("/apis/image-upload/", values.profileAvatarUrl)
+				.then(reply => {
+						let {message, type} = reply;
 
-				if(imageResponse.status === 200) {
-					const updatedProfile = updateProfileObject(imageResponse.message, profile, values);
-					const profileResponse = await httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile);
-					resetForm();
-					setStatus(profileResponse);
-				} else {
-					setStatus({message: imageResponse.message, type: imageResponse.type});
-				}
-			} else {
-				const updatedProfile = updateProfileObject(undefined, profile, values);
-				const profileResponse = await httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile);
-				resetForm();
-				setStatus(profileResponse);
-			}
-
-		} catch(error) {
-			console.log(error)
+						if(reply.status === 200) {
+							submitUpdatedProfile(values)
+						} else {
+							setStatus({message, type});
+						}
+					}
+				);
+		} else {
+			submitUpdatedProfile(values);
 		}
 	}
 
