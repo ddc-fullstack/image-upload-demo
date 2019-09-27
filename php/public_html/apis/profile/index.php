@@ -79,7 +79,7 @@ try {
 			throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));
 		}
 
-		validateJwtHeader();
+		//validateJwtHeader();
 
 		//decode the response from the front end
 		$requestContent = file_get_contents("php://input");

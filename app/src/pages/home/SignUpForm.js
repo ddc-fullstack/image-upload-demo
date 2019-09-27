@@ -13,7 +13,6 @@ export const SignUpForm = () => {
 		profilePassword: "",
 		profilePasswordConfirm: "",
 		profilePhone: "",
-		profileAvatar: null
 	};
 
 	const validator = Yup.object().shape({
@@ -31,32 +30,21 @@ export const SignUpForm = () => {
 		profilePhone: Yup.string()
 			.min(10, "phone number is to short")
 			.max(10, "phone Number is to long"),
-		profileAvatar: Yup.mixed()
-			.required("A profile Avatar is required")
 	});
 
 	const submitSignUp = (values, {resetForm, setStatus}) => {
-		console.log(values.profileAvatar.getAll("avatar"));
 
-		httpConfig.post("/apis/image-upload/",values.profileAvatar)
-			.then(reply => reply)
-			.catch(error => {
-				console.log(error)
-			});
+		httpConfig.post("/apis/sign-up/", values)
+			.then(reply => {
+					let {message, type} = reply;
 
-
-		//
-		// httpConfig.post("/apis/sign-up/", values)
-		// 	.then(reply => {
-		// 			let {message, type} = reply;
-		//
-		// 			if(reply.status === 200) {
-		// 				resetForm();
-		// 				setStatus({message, type});
-		// 			}
-		// 			setStatus({message, type});
-		// 		}
-		// 	);
+					if(reply.status === 200) {
+						resetForm();
+						setStatus({message, type});
+					}
+					setStatus({message, type});
+				}
+			);
 	};
 
 	return (

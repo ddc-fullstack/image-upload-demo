@@ -9,7 +9,7 @@ export function ImageDropZone({formikProps}) {
 		formData.append('image',acceptedFiles[0]);
 
 
-		formikProps.setFieldValue("profileAvatar", formData )
+		formikProps.setFieldValue(formikProps.fieldValue, formData )
 
 	}, []);
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
@@ -21,14 +21,16 @@ export function ImageDropZone({formikProps}) {
 			<input
 				className="form-control-file"
 				accept="image/*"
+				onChange={formikProps.handleChange}
+				onBlur={formikProps.handleBlur}
 				{...getInputProps()}
-
 			/>
 			{
 				isDragActive ?
 					<p>Drop the files here ...</p> :
 					<p>Drag 'n' drop some files here, or click to select files</p>
 			}
+
 			</div>
 		</div>
 	)

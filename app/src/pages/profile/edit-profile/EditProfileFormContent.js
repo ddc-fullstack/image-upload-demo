@@ -1,12 +1,15 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import React from "react";
-import {FormDebugger} from "../../shared/components/FormDebugger";
-import {useDropzone} from "react-dropzone";
-import {ImageDropZone} from "../../shared/components/ImageDropZone";
+import {FormDebugger} from "../../../shared/components/FormDebugger";
+import {ImageDropZone} from "../../../shared/components/ImageDropZone";
 
-export const SignUpFormContent = (props) => {
+
+
+
+export const EditProfileFormContent = (props) => {
 	const {
+		setFieldValue,
 		status,
 		values,
 		errors,
@@ -33,7 +36,7 @@ export const SignUpFormContent = (props) => {
 						</div>
 						<input
 							className="form-control"
-							id="profileEmail"
+							name="profileEmail"
 							type="email"
 							value={values.profileEmail}
 							placeholder="Enter email"
@@ -48,56 +51,8 @@ export const SignUpFormContent = (props) => {
 								{errors.profileEmail}
 							</div>
 						)
-
 					}
 				</div>
-				{/*controlId must match what is defined by the initialValues object*/}
-				<div className="form-group">
-					<label htmlFor="profilePassword">Password</label>
-					<div className="input-group">
-						<div className="input-group-prepend">
-							<div className="input-group-text">
-								<FontAwesomeIcon icon="key"/>
-							</div>
-						</div>
-						<input
-							id="profilePassword"
-							className="form-control"
-							type="password"
-							placeholder="Password"
-							value={values.profilePassword}
-							onChange={handleChange}
-							onBlur={handleBlur}
-						/>
-					</div>
-					{errors.profilePassword && touched.profilePassword && (
-						<div className="alert alert-danger">{errors.profilePassword}</div>
-					)}
-				</div>
-				<div className="form-group">
-					<label htmlFor="profilePasswordConfirm">Confirm Your Password</label>
-					<div className="input-group">
-						<div className="input-group-prepend">
-							<div className="input-group-text">
-								<FontAwesomeIcon icon="key"/>
-							</div>
-						</div>
-						<input
-
-							className="form-control"
-							type="password"
-							id="profilePasswordConfirm"
-							placeholder="Password Confirm"
-							value={values.profilePasswordConfirm}
-							onChange={handleChange}
-							onBlur={handleBlur}
-						/>
-					</div>
-					{errors.profilePasswordConfirm && touched.profilePasswordConfirm && (
-						<div className="alert alert-danger">{errors.profilePasswordConfirm}</div>
-					)}
-				</div>
-
 
 				<div className="form-group">
 					<label htmlFor="profileHandle">@Handle</label>
@@ -126,7 +81,6 @@ export const SignUpFormContent = (props) => {
 						)
 					}
 				</div>
-
 
 				<div className="form-group">
 					<label htmlFor="profilePhone">Phone Number</label>
@@ -166,6 +120,15 @@ export const SignUpFormContent = (props) => {
 					>Reset
 					</button>
 				</div>
+				<ImageDropZone
+					formikProps={{
+						handleChange,
+						handleBlur,
+						setFieldValue,
+						fieldValue:"profileAvatarUrl"
+
+					}}
+				/>
 
 
 				<FormDebugger {...props} />

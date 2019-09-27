@@ -3,6 +3,6 @@ import {profileReducer} from "./profileReducer";
 
 
 
-export const combinedReducers = combineReducers({
-	Profiles: profileReducer
+export const reducers = combineReducers({
+	profiles: profileReducer
 });

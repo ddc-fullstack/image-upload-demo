@@ -57,9 +57,9 @@ try {
 
 		$tempUserFileName = $_FILES["image"]["tmp_name"];
 
-		$cloudinary = \Cloudinary\Uploader::upload($tempUserFileName, array("width" => 200, "crop" => "scale"));
+		//$cloudinary = \Cloudinary\Uploader::upload($tempUserFileName, array("width" => 200, "crop" => "scale"));
 
-		$reply->message  = $cloudinary["secure_url"];
+		$reply->message  = "https://cloudinary.com/mysupercoolimage.jpg";
 
 
 
