@@ -6,7 +6,7 @@ import {EditProfileFormContent} from "./EditProfileFormContent";
 
 export const EditProfileForm = ({profile}) => {
 
-	 const initialValues = {
+	const initialValues = {
 		profileEmail: "",
 		profileAtHandle: "",
 		profilePhone: "",
@@ -24,42 +24,32 @@ export const EditProfileForm = ({profile}) => {
 	});
 
 
-	const addCloudinaryUrl = (cloudinaryUrl, profile, values ) => {
-		const newProfile = Object.assign({}, {...values}, {...profile});
-		newProfile.profileAvatarUrl = cloudinaryUrl;
-		return newProfile;
-	};
-
-	const  uploadImage =  async (image) =>{
-		const {status,message, type} = await httpConfig.post("/apis/image-upload/",image);
-		console.log(status);
-		return status === 200 ?  {status, message,type} : undefined;
-	};
-
-	const uploadEditedProfile = async (profile) => {
-		const {status,message, type} = await httpConfig.put(`apis/profile/${profile.profileId}`, profile);
-		return status === 200 ?  {status, message,type} : undefined;
-	};
-
-
-
 	async function submitEditedProfile(values, {resetForm, setStatus}) {
+
+		const updateProfileObject = (cloudinaryUrl, profile, values) => {
+			const newProfile = Object.assign({}, {...values}, {...profile});
+			if(cloudinaryUrl) {
+				newProfile.profileAvatarUrl = cloudinaryUrl;
+			}
+			return newProfile;
+		};
 
 		try {
 			if(values.profileAvatarUrl) {
-				const imageResponse =   await uploadImage(values.profileAvatarUrl);
+				const imageResponse = await httpConfig.post("/apis/image-upload/", values.profileAvatarUrl);
 
-				console.log(imageResponse);
-
-				const updatedProfile = imageResponse.status === 200 ?
-					addCloudinaryUrl(imageResponse.message, profile, values) :
+				if(imageResponse.status === 200) {
+					const updatedProfile = updateProfileObject(imageResponse.message, profile, values);
+					const profileResponse = await httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile);
+					resetForm();
+					setStatus(profileResponse);
+				} else {
 					setStatus({message: imageResponse.message, type: imageResponse.type});
-
-
-				console.log(updatedProfile);
-
-				const profileResponse = updatedProfile ? await uploadEditedProfile(updatedProfile) :
-					setStatus({message :imageResponse.message, type: imageResponse.type});
+				}
+			} else {
+				const updatedProfile = updateProfileObject(undefined, profile, values);
+				const profileResponse = await httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile);
+				resetForm();
 				setStatus(profileResponse);
 			}
 
