@@ -33,7 +33,7 @@ export const EditProfileForm = ({profile}) => {
 				})
 		};
 
-		if(values.profileAvatarUrl) {
+		if(values.profileAvatarUrl !== "null") {
 			httpConfig.post("/apis/image-upload/", values.profileAvatarUrl)
 				.then(reply => {
 						let {message, type} = reply;

@@ -74,6 +74,9 @@ try {
 		//enforce the end user has a JWT token
 		//validateJwtHeader();
 
+		var_dump($id);
+		var_dump($_SESSION);
+
 		//enforce the user is signed in and only trying to edit their own profile
 		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $id) {
 			throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));

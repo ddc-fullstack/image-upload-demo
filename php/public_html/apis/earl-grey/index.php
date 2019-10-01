@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__,3 ) .  "/lib/xsrf.php";
+require_once dirname(__DIR__, 3) . "/Classes/autoload.php";
 
 use Edu\Cnm\DataDesign;
 $reply = new stdClass();
