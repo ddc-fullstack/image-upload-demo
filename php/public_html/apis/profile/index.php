@@ -71,11 +71,7 @@ try {
 		//enforce that the XSRF token is present in the header
 		verifyXsrf();
 
-		//enforce the end user has a JWT token
-		//validateJwtHeader();
 
-		var_dump($id);
-		var_dump($_SESSION);
 
 		//enforce the user is signed in and only trying to edit their own profile
 		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $id) {
