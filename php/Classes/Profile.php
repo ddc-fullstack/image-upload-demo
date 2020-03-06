@@ -282,12 +282,12 @@ class Profile implements \JsonSerializable {
 
 		//enforce the hash is really an Argon hash
 		$profileHashInfo = password_get_info($newProfileHash);
-		if($profileHashInfo["algoName"] !== "argon2i") {
+		if($profileHashInfo["algoName"] !== "argon2id") {
 			throw(new \InvalidArgumentException("profile hash is not a valid hash"));
 		}
 
 		//enforce that the hash is exactly 97 characters.
-		if(strlen($newProfileHash) !== 97) {
+		if(strlen($newProfileHash) > 97 ) {
 			throw(new \RangeException("profile hash must be 97 characters"));
 		}
 
