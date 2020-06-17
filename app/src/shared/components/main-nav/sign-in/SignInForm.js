@@ -7,7 +7,7 @@ import {httpConfig} from "../../../utils/http-config";
 
 
 
-export const SignInForm = () => {
+export const SignInForm = ({closeModal}) => {
 	const validator = Yup.object().shape({
 		profileEmail: Yup.string()
 			.email("email must be a valid email")
@@ -31,9 +31,11 @@ export const SignInForm = () => {
 					window.localStorage.removeItem("jwt-token");
 					window.localStorage.setItem("jwt-token", reply.headers["x-jwt-token"]);
 					resetForm();
+					//setTimeout(closeModal(), 30000)
 				}
 				let {message, type} = reply;
 				setStatus({message, type});
+
 			});
 	};
 

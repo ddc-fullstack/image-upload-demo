@@ -21,7 +21,7 @@ export const SignInModal = () => {
 					<Modal.Title>Sign In</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<SignInForm/>
+					<SignInForm closeModal={handleClose}/>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>

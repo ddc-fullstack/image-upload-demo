@@ -12,6 +12,13 @@ export const Profile = () => {
 
 	const profileId = UseJwtProfileId();
 
+	const effects = () => {
+
+	};
+
+	const inputs = [profileId];
+
+	React.useEffect(effects, inputs);
 
 	const profile = useSelector((state) => {
 			let {profiles} = state;
@@ -19,16 +26,6 @@ export const Profile = () => {
 			return matchedProfile !== undefined ? matchedProfile : null
 		}
 	);
-
-
-	const effects = () => {
-
-		dispatch(getProfileByProfileId(profileId));
-	};
-
-	const inputs = [profileId];
-
-	React.useEffect(effects, inputs);
 
 	const showProfileAtHandle = () => {
 		if(profile) {
