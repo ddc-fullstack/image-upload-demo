@@ -1,0 +1,22 @@
+version: "3"
+services:
+  sql:
+    build: ./sql
+    volumes:
+      - image-upload:/var/lib/mysql
+    env_file:
+      - ./.env
+    command: --default-authentication-plugin=mysql_native_password
+  node:
+    build: ./apis
+    env_file:
+      - .env
+    ports:
+      - 8081:4200
+    user: "node"
+    volumes:
+      - ./apis/src:/home/node/app/src
+      - ./apis/utils:/home/node/app/utils/
+      - ./apis/tsconfig.json:/home/node/app/tsconfig.json
+volumes:
+  image-upload:
