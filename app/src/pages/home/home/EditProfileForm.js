@@ -1,10 +1,7 @@
-import React, { useCallback } from "react"
+import React from "react"
 import * as Yup from "yup";
 import { httpConfig } from "../../../shared/utils/http-config";
 import { Formik } from "formik";
-import { useDropzone } from 'react-dropzone'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FormDebugger } from '../../../shared/components/FormDebugger'
 import { EditProfileFormContent } from './EditProfileFormContent'
 
 export const EditProfileForm = ({profile}) => {
@@ -30,7 +27,7 @@ export const EditProfileForm = ({profile}) => {
   function submitEditedProfile (values, {resetForm, setStatus}) {
     const submitUpdatedProfile = (updatedProfile) => {
       console.log(values)
-      httpConfig.put(`apis/profile/${updatedProfile.profileId}`, updatedProfile)
+      httpConfig.post(`/apis/image-upload/`, updatedProfile)
         .then(reply => {
           let {message, type} = reply;
 

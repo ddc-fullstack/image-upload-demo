@@ -11,7 +11,7 @@ export function ImageDropZone({formikProps}) {
 
 		formikProps.setFieldValue(formikProps.fieldValue, formData)
 
-	}, []);
+	}, [formikProps]);
 	const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
 
 

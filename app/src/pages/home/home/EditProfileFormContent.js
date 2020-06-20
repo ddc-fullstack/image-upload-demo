@@ -111,15 +111,6 @@ export const EditProfileFormContent = (props) => {
 
 					}
 				</div>
-				<div className="form-group">
-					<button className="btn btn-primary mb-2" type="submit">Submit</button>
-					<button
-						className="btn btn-danger mb-2"
-						onClick={handleReset}
-						disabled={!dirty || isSubmitting}
-					>Reset
-					</button>
-				</div>
 				<ImageDropZone
 					formikProps={{
 						values,
@@ -129,7 +120,15 @@ export const EditProfileFormContent = (props) => {
 						fieldValue:"profileAvatarUrl"
 					}}
 				/>
-				{status && (<div className={status.type}>{status.message}</div>)}
+				<div className="form-group">
+					<button className="btn btn-primary mb-2" type="submit">Submit</button>
+					<button
+						className="btn btn-danger mb-2"
+						onClick={handleReset}
+						disabled={!dirty || isSubmitting}
+					>Reset
+					</button>
+				</div>
 				<FormDebugger {...props} />
 			</form>
 

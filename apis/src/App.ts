@@ -6,6 +6,7 @@ import {SignupRouter} from "./routes/sign-up.route";
 import {SignInRouter} from "./routes/sign-in.route";
 import passport from "passport";
 import {passportMiddleware} from "./controllers/sign-in.controller";
+import {ImageUploadRouter} from "./routes/image-upload.route";
 
 const cookieParser = require('cookie-parser')
 const session = require("express-session")
@@ -63,10 +64,11 @@ export class App {
 	
 	// private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
 	private routes() {
-		//TODO add "/apis"
+	
 		this.app.use('/apis', indexRoutes)
 		this.app.use('/apis/sign-up', SignupRouter)
 		this.app.use('/apis/sign-in', SignInRouter)
+		this.app.use("/apis/image-upload", ImageUploadRouter)
 	}
 	
 	// starts the server and tells the terminal to post a message that the server is running and on what port
