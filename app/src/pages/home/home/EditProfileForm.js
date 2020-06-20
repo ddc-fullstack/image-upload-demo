@@ -25,9 +25,9 @@ export const EditProfileForm = ({profile}) => {
   });
 
   function submitEditedProfile (values, {resetForm, setStatus}) {
+
     const submitUpdatedProfile = (updatedProfile) => {
-      console.log(values)
-      httpConfig.post(`/apis/image-upload/`, updatedProfile)
+      httpConfig.post(`/apis/profile/`, updatedProfile)
         .then(reply => {
           let {message, type} = reply;
 
@@ -39,13 +39,14 @@ export const EditProfileForm = ({profile}) => {
         })
     };
 
-    if (values.profileAvatarUrl !== "null") {
+    console.log(typeof values.profileAvatarUrl)
+    if (values.profileAvatarUrl !== undefined) {
       httpConfig.post("/apis/image-upload/", values.profileAvatarUrl)
         .then(reply => {
             let {message, type} = reply;
 
             if (reply.status === 200) {
-              submitUpdatedProfile(values)
+              submitUpdatedProfile({...values, profileAvatarUrl:message})
             } else {
               setStatus({message, type});
             }
