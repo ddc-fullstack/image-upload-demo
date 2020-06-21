@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {imageUploadController} from "../controllers/image-upload.controller";
-import {imageUploader} from "../lib/multer";
+import {imageUploader} from "../lib/multer.controller";
 
 export const ImageUploadRouter = Router();
 
